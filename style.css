@@ -1,0 +1,90 @@
+/* 色を変えるときは、まずこの4色を編集します。 */
+:root {
+  --cream: #fff8ed;
+  --ink: #432617;
+  --brown: #734324;
+  --olive: #52632d;
+  --line: #d9c6ad;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: radial-gradient(ellipse at top, #fff7e8, var(--cream) 62%);
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", serif;
+  line-height: 1.7;
+}
+a { color: inherit; }
+a:focus-visible, summary:focus-visible { outline: 3px solid #9b6829; outline-offset: 3px; }
+img { display: block; width: 100%; }
+.wrap { width: min(100% - 2rem, 56rem); margin-inline: auto; }
+.header { display: flex; align-items: center; justify-content: space-between; min-height: 4rem; }
+.brand { text-decoration: none; font-size: clamp(1.25rem, 4.5vw, 2rem); font-weight: bold; letter-spacing: .08em; }
+.navigation { position: relative; }
+summary { cursor: pointer; }
+.navigation summary, .news summary { list-style: none; }
+.navigation summary::-webkit-details-marker, .news summary::-webkit-details-marker { display: none; }
+.navigation summary { padding: .4rem .75rem; font-size: 1.5rem; }
+.navigation nav {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  width: 12rem;
+  padding: .5rem;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px #43261725;
+}
+.navigation a { display: block; padding: .55rem; }
+.hero {
+  color: #fff8eb;
+  background: linear-gradient(90deg, #211207 8%, #211207d9 35%, #21120715 100%), url("images/hero.jpg") right center / auto 115% no-repeat #211207;
+}
+.hero-copy { display: grid; align-content: center; min-height: clamp(15rem, 45vw, 26rem); padding-block: 1.5rem; }
+.badge { width: fit-content; margin: 0; padding: .15rem .55rem; border: 1px solid #fff8eb80; background: #28180dcc; font-size: .78rem; }
+h1 { margin: .9rem 0 0; font-size: clamp(1.45rem, 5.5vw, 3rem); letter-spacing: .08em; line-height: 1.5; text-shadow: 0 2px 6px #211207; }
+h1::after { content: ""; display: block; width: 3rem; border-bottom: 1px solid; margin-top: .9rem; }
+section { margin-block: 2rem; }
+h2 { display: flex; gap: .75rem; align-items: center; justify-content: center; margin: 0 0 .9rem; font-size: clamp(1.2rem, 5vw, 1.85rem); letter-spacing: .08em; }
+h2::before, h2::after { content: ""; flex: 1; height: 1px; background: #a8886a; }
+p { margin: 0 0 .65em; }
+p:last-child { margin-bottom: 0; }
+.pair { display: grid; align-items: center; gap: 1rem; }
+.pair img, .pair svg { display: block; width: 100%; border-radius: .55rem; }
+.owner { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+.owner p { font-size: clamp(.875rem, 2.4vw, 1.125rem); }
+.menu { display: grid; gap: .55rem; list-style: none; padding: 0; margin: 0; }
+.menu li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: .8rem; align-items: center; padding: .55rem; border: 1px solid var(--line); border-radius: .75rem; background: #fff9ed70; }
+.menu img { border-radius: .55rem; }
+.menu h3 { margin: 0 0 .25rem; font-size: 1.05rem; }
+.menu p { font-size: .9rem; }
+.price { display: table; margin-left: auto; padding: .05rem .65rem; background: var(--brown); color: white; border-radius: .3rem; font-weight: bold; }
+.note { margin-top: .5rem; font-size: .85rem; }
+dl { margin: 0; }
+dl div { display: grid; grid-template-columns: 5rem 1fr; gap: .7rem; margin-bottom: .45rem; align-items: start; }
+dt { text-align: center; color: white; background: var(--olive); border-radius: .25rem; font-size: .88rem; }
+dd { margin: 0; }
+.news { margin-bottom: .45rem; border: 1px solid var(--line); border-radius: .55rem; background: #fff9ed70; }
+.news summary { display: grid; grid-template-columns: 4rem 1fr auto; gap: .7rem; align-items: center; padding: .45rem; }
+.news summary::after { content: "›"; font-size: 1.4rem; }
+.news[open] summary::after { transform: rotate(90deg); }
+.news img { border-radius: .3rem; }
+.news time { display: block; color: var(--olive); font-size: .85rem; font-weight: bold; }
+.news p { padding: .3rem .75rem .75rem; }
+footer { padding: 1.5rem 1rem; text-align: center; color: var(--cream); background: #4e2e1d; font-size: .88rem; }
+.footer-title { font-size: 1.2rem; font-weight: bold; }
+footer a { display: inline-block; padding: .35rem 1rem; border: 1px solid; border-radius: 2rem; }
+
+/* 幅が広い画面では写真と文章、メニューカードを横に並べます。 */
+@media (min-width: 640px) {
+  .pair, .menu { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .owner { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+  .access { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+  .hero { background-size: auto, max(62%, 36rem) auto; }
+  section { margin-block: 2.6rem; }
+  .news summary { grid-template-columns: 7rem 1fr auto; }
+}
+@media (max-width: 350px) {
+  .owner { grid-template-columns: 1fr; }
+}
+
